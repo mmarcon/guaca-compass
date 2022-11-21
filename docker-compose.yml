@@ -1,0 +1,21 @@
+---
+version: "3.2"
+services:
+  compass:
+    build:
+      context: .
+    container_name: compass
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PASSWORD= #optional
+      - CLI_ARGS= #optional
+    volumes:
+      - ./data:/config
+    ports:
+      - 8080:8080
+      - 8081:8081
+    restart: unless-stopped
